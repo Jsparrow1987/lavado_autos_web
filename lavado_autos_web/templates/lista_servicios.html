@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Nuestros Servicios{% endblock %}
+{% block page_title %}Lista de Servicios Disponibles{% endblock %}
+
+{% block content %}
+<div class="service-grid">
+    {% for servicio in servicios %}
+    <div class="card">
+        <h3>{{ servicio.nombre }}</h3>
+        <p class="service-price">S/ {{ "%.2f"|format(servicio.precio) }}</p>
+        <p>{{ servicio.descripcion }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

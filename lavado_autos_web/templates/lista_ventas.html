@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Historial de Ventas{% endblock %}
+{% block page_title %}Historial de Ventas y Boletas{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Cliente</th>
+                    <th>Servicio Realizado</th>
+                    <th>Atendido por</th>
+                    <th>Precio Final</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for venta in ventas %}
+                <tr>
+                    <td>{{ venta.fecha.split(' ')[0] }}</td>
+                    <td>
+                        <a href="{{ url_for('perfil_cliente', id=venta.cliente_id) }}">
+                            {{ venta.cliente_nombre }}
+                        </a>
+                    </td>
+                    <td>{{ venta.servicio_nombre }}</td>
+                    <td>{{ venta.usuario_nombre }}</td>
+                    <td>S/ {{ "%.2f"|format(venta.precio_final) }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5">No hay ventas registradas todavía.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

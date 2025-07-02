@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Lista de Clientes{% endblock %}
+{% block page_title %}Lista de Clientes{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>DNI</th>
+                    <th>Placa</th>
+                    <th>Categoría</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cliente in clientes %}
+                <tr>
+                    <td>{{ cliente.nombre }}</td>
+                    <td>{{ cliente.dni or 'N/A' }}</td>
+                    <td>{{ cliente.placa }}</td>
+                    <td><span class="tag tag-{{ cliente.categoria.lower() }}">{{ cliente.categoria }}</span></td>
+                    <td>
+                        <a href="{{ url_for('perfil_cliente', id=cliente.id) }}" class="btn-small">Ver Perfil</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5">No hay clientes registrados.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

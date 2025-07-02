@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+{% block page_title %}Dashboard - Resumen Diario - Emilia CarWash{% endblock %}
+
+{% block content %}
+<div class="dashboard-grid">
+    <div class="card">
+        <h3>Clientes Atendidos Hoy</h3>
+        <p class="stat-number">{{ clientes_atendidos_hoy }}</p>
+    </div>
+    <div class="card">
+        <h3>Servicios Realizados Hoy</h3>
+        <p class="stat-number">{{ servicios_realizados_hoy }}</p>
+    </div>
+    <div class="card">
+        <h3>Ingresos de Hoy</h3>
+        <p class="stat-number">S/ {{ "%.2f"|format(ingresos_hoy) }}</p>
+    </div>
+</div>
+{% endblock %}
